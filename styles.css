@@ -1141,6 +1141,31 @@ input[type=number]::-webkit-outer-spin-button {
     }
 }
 
+/* =========================================
+   OVERLAYS Y COMPONENTES NUEVOS
+========================================= */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 990;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.close-sidebar {
+    display: none; /* Desktop */
+}
+
 /* Responsive */
 @media (max-width: 900px) {
     .modal-grid {
@@ -1157,10 +1182,6 @@ input[type=number]::-webkit-outer-spin-button {
     }
     
     .sidebar {
-        display: none; 
-    }
-    
-    .sidebar.active {
         display: block;
         position: fixed;
         left: 0;
@@ -1169,8 +1190,15 @@ input[type=number]::-webkit-outer-spin-button {
         z-index: 1000;
         width: 80%;
         max-width: 300px;
+        background-color: var(--bg-light);
         overflow-y: auto;
         border-radius: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
     }
     
     .category-nav {
@@ -1198,6 +1226,46 @@ input[type=number]::-webkit-outer-spin-button {
     
     .main-header-container {
         flex-wrap: wrap;
+    }
+    
+    .close-sidebar {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    /* Modal Bottom Sheet */
+    .modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+    .modal-content {
+        max-height: 85vh;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(100%);
+    }
+    .modal-overlay.active .modal-content {
+        transform: translateY(0);
+    }
+    .modal-grid {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .modal-left {
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .modal-right {
+        padding: 20px;
+        flex-direction: column;
     }
 }
 

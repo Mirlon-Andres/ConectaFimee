@@ -82,13 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initUI() {
+    // Sidebar overlay and close button
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    const closeSidebarBtn = document.getElementById('close-sidebar');
+
     // Mobile Menu Toggle
     if (mobileMenuToggle && categoryNav && sidebar) {
         mobileMenuToggle.addEventListener('click', () => {
             categoryNav.classList.toggle('active');
             sidebar.classList.toggle('active');
+            if (sidebarOverlay) sidebarOverlay.classList.toggle('active');
         });
     }
+
+    if (sidebarOverlay) sidebarOverlay.addEventListener('click', cerrarMenuMobile);
+    if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', cerrarMenuMobile);
 
     // Cart Toggle
     if (cartToggle) {
@@ -142,6 +150,7 @@ function initUI() {
                     const term = e.target.value;
                     searchInput.value = term;
                     fetchProductsFromAPI(term);
+                    cerrarMenuMobile();
                 }
             });
         });
@@ -495,6 +504,14 @@ function searchByCategory(categoryTerm) {
             radio.checked = (radio.value === categoryTerm);
         });
     }
+    cerrarMenuMobile();
+}
+
+function cerrarMenuMobile() {
+    if (categoryNav) categoryNav.classList.remove('active');
+    if (sidebar) sidebar.classList.remove('active');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    if (sidebarOverlay) sidebarOverlay.classList.remove('active');
 }
 
 // Generador de Skeleton Loaders
