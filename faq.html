@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Conecta FIMEE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-links">
+                <a href="index.html">Inicio</a>
+                <a href="empresa.html">Empresa</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="faq.html">Preguntas Frecuentes</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="top-bar-contact">
+                <span><i class="fa-solid fa-envelope"></i> ventas@conectafimee.pe</span>
+                <span><i class="fa-brands fa-whatsapp"></i> +51 935 690 826</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="main-header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>CONECTA <span class="logo-accent">FIMEE</span></h1>
+                </a>
+            </div>
+            <div class="search-container">
+                <form class="search-form" id="search-form">
+                    <input type="text" id="search-input" placeholder="Buscar en FIMEE...">
+                    <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="action-item" id="cart-toggle">
+                    <div class="cart-icon-wrapper">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="category-nav" id="category-nav">
+        <div class="nav-container">
+            <ul class="main-menu">
+                <li class="menu-item"><a href="index.html">Inicio</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="static-page-content">
+        <section class="page-title-section">
+            <h2>Preguntas Frecuentes (FAQ)</h2>
+            <p>Resuelve tus dudas sobre nuestro proceso de venta y entrega</p>
+        </section>
+
+        <section class="page-section">
+            <div class="content-container">
+                <div class="faq-item">
+                    <div class="faq-question">1. ¿Cómo realizo una compra?</div>
+                    <div class="faq-answer">Es sencillo. Agrega los componentes o libros que necesites al carrito utilizando nuestra página de inicio. Cuando termines, haz clic en el carrito y luego en el botón "Finalizar Compra". Esto generará un mensaje automático hacia nuestro WhatsApp oficial para coordinar el pago y la entrega.</div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">2. ¿Dónde se realizan las entregas?</div>
+                    <div class="faq-answer">Todas las entregas se realizan de forma presencial y segura dentro de las instalaciones de la Facultad de Ingeniería Mecánica Eléctrica y Electrónica (FIMEE) en los horarios acordados por WhatsApp.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-answer">Aceptamos efectivo al momento de la entrega en FIMEE y pagos mediante billeteras digitales como Yape y Plin, que puedes transferir justo al momento de la entrega para mayor seguridad.</div>
+                </div>
+
+                <div class="faq-item" style="border-bottom: none;">
+                    <div class="faq-question">4. ¿Los libros son originales y actualizados?</div>
+                    <div class="faq-answer">Sí, nuestra bibliografía está alineada exactamente con el syllabus y las mallas curriculares actuales de las carreras de Electrónica y Mecánica Eléctrica.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar"></div>
+    
+    <!-- Institutional Footer -->
+    <footer class="institutional-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>CONECTA FIMEE</h3>
+                <p>El principal proveedor de componentes electrónicos y bibliografía técnica para las carreras de Ingeniería Electrónica y Mecánica Eléctrica de la FIMEE.</p>
+                <div style="margin-top: 15px;">
+                    <i class="fa-brands fa-facebook" style="font-size: 1.5rem; margin-right: 15px; cursor: pointer;"></i>
+                    <i class="fa-brands fa-instagram" style="font-size: 1.5rem; margin-right: 15px; cursor: pointer;"></i>
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links" style="list-style: none;">
+                    <li><a href="index.html">Catálogo Completo</a></li>
+                    <li><a href="empresa.html">Sobre Nosotros</a></li>
+                    <li><a href="blog.html">Blog Académico</a></li>
+                    <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul class="footer-links" style="list-style: none;">
+                    <li><i class="fa-solid fa-location-dot" style="width: 20px;"></i> Facultad FIMEE</li>
+                    <li><i class="fa-brands fa-whatsapp" style="width: 20px;"></i> +51 935 690 826</li>
+                    <li><i class="fa-solid fa-envelope" style="width: 20px;"></i> ventas@conectafimee.pe</li>
+                    <li><i class="fa-solid fa-clock" style="width: 20px;"></i> Lun - Vie: 8am - 4pm</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Conecta FIMEE. Todos los derechos reservados. Desarrollado para la comunidad universitaria.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

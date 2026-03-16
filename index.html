@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conecta FIMEE - Tienda y Biblioteca</title>
+    <!-- Favicon (Ícono de pestaña) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top Bar (Barra Informativa) -->
+    <div class="top-bar">
+        <div class="top-bar-container">
+            <div class="top-bar-links">
+                <a href="index.html">Inicio</a>
+                <a href="empresa.html">Empresa</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="faq.html">Preguntas Frecuentes</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="top-bar-contact">
+                <span><i class="fa-solid fa-envelope"></i> ventas@conectafimee.pe</span>
+                <span><i class="fa-brands fa-whatsapp"></i> +51 935 690 826</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="main-header-container">
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            
+            <div class="logo">
+                <a href="#" onclick="fetchAllProducts()">
+                    <h1>CONECTA <span class="logo-accent">FIMEE</span></h1>
+                </a>
+            </div>
+
+            <div class="search-container">
+                <form class="search-form" id="search-form">
+                    <select class="category-select" id="search-category">
+                        <option value="all">Todas</option>
+                        <option value="electronica">Electrónica</option>
+                        <option value="libros">Libros</option>
+                    </select>
+                    <input type="text" id="search-input" placeholder="Buscar resistencias, capacitores, libros...">
+                    <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+
+            <div class="header-actions">
+                <a href="#" class="action-item hidden-mobile">
+                    <i class="fa-regular fa-user"></i>
+                    <span class="action-text">Mi cuenta<br><strong>Registro</strong></span>
+                </a>
+                <a href="#" class="action-item hidden-mobile">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+                <a href="#" class="action-item" id="cart-toggle">
+                    <div class="cart-icon-wrapper">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-badge" id="cart-badge">0</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation / Categories Menu -->
+    <nav class="category-nav" id="category-nav">
+        <div class="nav-container">
+            <ul class="main-menu">
+                <li class="menu-item"><a href="#" onclick="fetchAllProducts()">Inicio</a></li>
+                <li class="menu-item has-dropdown">
+                    <a href="#" onclick="searchByCategory('electronica')">Electrónica <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#" onclick="searchByCategory('resistencias')">Resistencias</a></li>
+                        <li><a href="#" onclick="searchByCategory('capacitores')">Capacitores</a></li>
+                        <li><a href="#" onclick="searchByCategory('diodos')">Diodos</a></li>
+                        <li><a href="#" onclick="searchByCategory('leds')">LEDs</a></li>
+                        <li><a href="#" onclick="searchByCategory('transistores')">Transistores</a></li>
+                        <li><a href="#" onclick="searchByCategory('circuitos integrados')">Circuitos Integrados</a></li>
+                        <li><a href="#" onclick="searchByCategory('modulos')">Módulos</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item has-dropdown">
+                    <a href="#" onclick="searchByCategory('libros')">Libros Universitarios <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#" onclick="searchByCategory('ciencias')">Ciencias Básicas y Matemáticas</a></li>
+                        <li><a href="#" onclick="searchByCategory('dibujo')">Dibujo, Diseño e Informática</a></li>
+                        <li><a href="#" onclick="searchByCategory('mecanica')">Mecánica y Materiales</a></li>
+                        <li><a href="#" onclick="searchByCategory('fluidos')">Termodinámica y Fluidos</a></li>
+                        <li><a href="#" onclick="searchByCategory('potencia')">Electricidad y Sistemas de Potencia</a></li>
+                        <li><a href="#" onclick="searchByCategory('electronica')">Electrónica</a></li>
+                        <li><a href="#" onclick="searchByCategory('automatizacion')">Control y Automatización</a></li>
+                        <li><a href="#" onclick="searchByCategory('telecomunicaciones')">Telecomunicaciones y Electromagnetismo</a></li>
+                        <li><a href="#" onclick="searchByCategory('proyectos')">Gestión, Proyectos y Humanidades</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Layout: Sidebar + Grid -->
+    <main class="main-content">
+        <!-- Sidebar (Filtros) -->
+        <aside class="sidebar" id="sidebar">
+            <div class="filter-section">
+                <h3>Hardware y Componentes</h3>
+                <ul class="tree-menu">
+                    <li><label><input type="radio" name="category" value="resistencias"> Resistencias</label></li>
+                    <li><label><input type="radio" name="category" value="capacitores"> Capacitores</label></li>
+                    <li><label><input type="radio" name="category" value="diodos"> Diodos</label></li>
+                    <li><label><input type="radio" name="category" value="leds"> LEDs</label></li>
+                    <li><label><input type="radio" name="category" value="transistores"> Transistores</label></li>
+                    <li><label><input type="radio" name="category" value="integrados"> Circuitos Integrados</label></li>
+                    <li><label><input type="radio" name="category" value="modulos"> Módulos</label></li>
+                    <li><label><input type="radio" name="category" value="placas"> Placas de Desarrollo</label></li>
+                </ul>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Bibliografía FIMEE</h3>
+                <ul class="tree-menu">
+                    <li><label><input type="radio" name="category" value="ciencias"> Ciencias Básicas y Matemáticas</label></li>
+                    <li><label><input type="radio" name="category" value="dibujo"> Dibujo, Diseño e Informática</label></li>
+                    <li><label><input type="radio" name="category" value="mecanica"> Mecánica y Materiales</label></li>
+                    <li><label><input type="radio" name="category" value="fluidos"> Termodinámica y Fluidos</label></li>
+                    <li><label><input type="radio" name="category" value="potencia"> Electricidad y Sistemas de Potencia</label></li>
+                    <li><label><input type="radio" name="category" value="electronica"> Electrónica</label></li>
+                    <li><label><input type="radio" name="category" value="automatizacion"> Control y Automatización</label></li>
+                    <li><label><input type="radio" name="category" value="telecomunicaciones"> Telecomunicaciones y Electromagnetismo</label></li>
+                    <li><label><input type="radio" name="category" value="proyectos"> Gestión, Proyectos y Humanidades</label></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Wrapper for right column to preserve grid layout when hiding heroes -->
+        <div class="content-wrapper" style="min-width: 0;">
+            <!-- Hero Banner -->
+        <section class="home-hero">
+            <div class="hero-content">
+                <h2>El Núcleo Tecnológico de la FIMEE</h2>
+                <p>Encuentra componentes, módulos y bibliografía especializada sin salir de la facultad. Entregas rápidas y seguras.</p>
+                <button class="add-to-cart-btn" style="width: auto; padding: 12px 25px; font-size: 1.1rem;" onclick="document.getElementById('search-input').focus()">
+                    <i class="fa-solid fa-magnifying-glass"></i> Explorar Catálogo
+                </button>
+            </div>
+        </section>
+
+        <!-- Static Categories -->
+        <section class="static-categories">
+            <div class="static-cat-card" onclick="searchByCategory('electronica')">
+                <i class="fa-solid fa-microchip"></i>
+                <h4>Componentes</h4>
+            </div>
+            <div class="static-cat-card" onclick="searchByCategory('modulo')">
+                <i class="fa-solid fa-memory"></i>
+                <h4>Módulos</h4>
+            </div>
+            <div class="static-cat-card" onclick="searchByCategory('herramientas')">
+                <i class="fa-solid fa-toolbox"></i>
+                <h4>Herramientas</h4>
+            </div>
+            <div class="static-cat-card" onclick="searchByCategory('libros')">
+                <i class="fa-solid fa-book-open"></i>
+                <h4>Bibliografía</h4>
+            </div>
+        </section>
+
+        <!-- Ofertas Carousel -->
+        <div style="margin-bottom: 30px;">
+            <h2 id="section-title">Catálogo Completo</h2>
+        </div>
+        
+        <div style="margin-bottom: 40px; border-bottom: 2px solid var(--border-color); padding-bottom: 20px;">
+            <h3 style="color: var(--guinda-dark); margin-bottom: 15px;"><i class="fa-solid fa-fire"></i> Recién Llegados & Ofertas</h3>
+            <div class="product-grid" id="ofertas-carousel" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                <!-- Ofertas will be injected here -->
+            </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <section class="products-section">
+            <div class="products-header">
+                <h3 style="color: var(--text-main);">Resultados de Búsqueda</h3>
+                <div class="view-options">
+                    <span id="result-count">0 encontrados</span>
+                </div>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div id="loading-spinner" class="loading-spinner" style="display: none;">
+                <i class="fa-solid fa-circle-notch fa-spin"></i> Cargando productos...
+            </div>
+
+            <!-- Grid -->
+            <div class="product-grid" id="product-grid">
+                <!-- Tarjetas se renderizan aquí por JS -->
+            </div>
+        </section>
+        </div> <!-- End of content-wrapper -->
+    </main>
+
+    <!-- Modal de Detalles del Producto -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-grid">
+                <!-- Izquierda: Imagen -->
+                <div class="modal-left">
+                    <div class="modal-image-wrapper" id="modal-image-carousel" style="position: relative;">
+                        <!-- Images will be injected here -->
+                        <img id="modal-img" src="" alt="Producto" class="active-carousel-img">
+                        
+                        <!-- Carousel Controls -->
+                        <button id="carousel-prev" class="carousel-nav-btn" style="display: none; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; box-shadow: var(--shadow-sm); z-index: 5;"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button id="carousel-next" class="carousel-nav-btn" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.2rem; box-shadow: var(--shadow-sm); z-index: 5;"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators" id="carousel-indicators" style="display: flex; justify-content: center; gap: 8px; margin-top: 15px;"></div>
+                </div>
+                <!-- Derecha: Información -->
+                <div class="modal-right">
+                    <span class="modal-category" id="modal-category">Categoría</span>
+                    <h2 class="modal-title" id="modal-title">Nombre del Producto</h2>
+                    <div class="modal-sku">SKU: <span id="modal-sku">---</span></div>
+                    
+                    <div class="modal-price" id="modal-price">S/ 0.00</div>
+                    
+                    <!-- Stock Badge in Modal -->
+                    <div class="modal-stock-badge" id="modal-stock-badge">Disponible</div>
+                    
+                    <div class="modal-description" id="modal-desc">
+                        Descripción detallada del producto.
+                    </div>
+
+                    <!-- Variaciones / Opciones (ej: Ohmios) -> Oculto si no aplica -->
+                    <div class="modal-variants" id="modal-variants" style="display: none; margin-bottom: 20px;">
+                        <!-- Llenado dinámicamente -->
+                    </div>
+
+                    <div class="modal-actions" style="display: flex; gap: 10px; align-items: stretch; flex-wrap: nowrap; margin-top: auto;">
+                        <div class="quantity-selector">
+                            <button type="button" class="qty-btn minus" id="modal-qty-minus"><i class="fa-solid fa-minus"></i></button>
+                            <input type="number" id="modal-quantity" value="1" min="1" step="1">
+                            <button type="button" class="qty-btn plus" id="modal-qty-plus"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <a href="#" target="_blank" class="datasheet-btn" id="modal-datasheet" style="display: none;">
+                            <i class="fa-solid fa-file-pdf"></i> Ver Datasheet
+                        </a>
+                        <button class="add-to-cart-large-btn" id="modal-add-cart" style="flex: 1;">
+                            <i class="fa-solid fa-cart-plus"></i> Añadir al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay y Sidebar del Carrito -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3><i class="fa-solid fa-cart-shopping"></i> Mi Carrito</h3>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items del carrito se inyectan aquí -->
+            <div class="empty-cart-msg">Tu carrito está vacío</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal" class="subtotal-amount">S/ 0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">
+                <i class="fa-brands fa-whatsapp"></i> FINALIZAR COMPRA
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Botón Flotante de WhatsApp para Contacto Rápido -->
+    <a href="https://wa.me/51901436145?text=Hola%2C%20tengo%20una%20consulta%20sobre%20un%20producto%20de%20Conecta%20FIMEE" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
